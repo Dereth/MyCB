@@ -1,7 +1,10 @@
 package com.mycb.MyCB.query;
 
 import com.mycb.MyCB.query.QueryType;
+import com.mycb.MyCB.webpage.Link;
+import com.mycb.MyCB.webpage.Text;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -22,6 +25,9 @@ public abstract class QueryScreen {
 
     public void addArgs(String type, String search, String order, String limit, String page) {
         args = new QueryArgs();
+        if (type == null && search == null && order == null && limit == null && page == null) {
+            args.isNew = true;
+        }
         args.canRun = true;
 
         if (type == null) {
@@ -42,7 +48,6 @@ public abstract class QueryScreen {
             args.canRun = false;
         }
 
-        this.order = "desc";
         args.ascending = false;
         if (order == null) {
             args.canRun = false;
@@ -53,6 +58,9 @@ public abstract class QueryScreen {
         }
         else if (!order.equals("desc")) {
             args.canRun = false;
+        }
+        else {
+            this.order = order;
         }
 
         if (limit == null) {
@@ -166,10 +174,10 @@ public abstract class QueryScreen {
                 results = new ArrayList<>();
             }
             else if (args.type.hasArg()) {
-                results = jdbcTemplate.query(args.type.getQuery(), args.type.getMapper(), args.search);
+                results = jdbcTemplate.query(args.type.getQuery(), getMapper(), args.search);
             }
             else {
-                results = jdbcTemplate.query(args.type.getQuery(), args.type.getMapper());
+                results = jdbcTemplate.query(args.type.getQuery(), getMapper());
             }
 
             int size = Math.min(Math.max(results.size() - args.limit * args.page, 0), args.limit);
@@ -182,7 +190,40 @@ public abstract class QueryScreen {
             }
 
             model.addAttribute("results", processed);
+            String tempPage = page;
+            if (args.page > 0 && results.size() > 0) {
+                page = String.valueOf(args.page-1);
+                model.addAttribute("prev", new Link(getRedirect(), "Prev"));
+            }
+            else {
+                model.addAttribute("prev", null);
+            }
 
+            if (args.page * args.limit > results.size() && size == args.limit) {
+                page = String.valueOf(args.page+1);
+                model.addAttribute("next", new Link(getRedirect(), "Next"));
+            }
+            else {
+                model.addAttribute("next", null);
+            }
+
+            page = tempPage;
+
+            if (results.size() == 0) {
+                model.addAttribute("feedback", new Text("No results"));
+            }
+            else if (size == 0) {
+                model.addAttribute("feedback", new Text("No results on this page"));
+            }
+            else {
+                model.addAttribute("feedback", null);
+            }
+        }
+        else if (args.isNew) {
+            model.addAttribute("feedback", new Text("Press GO! to search"));
+        }
+        else {
+            model.addAttribute("feedback", new Text("Invalid Search; Were you messing with the URL?"));
         }
 
     }
@@ -228,6 +269,7 @@ public abstract class QueryScreen {
     }
 
     public abstract QueryType parseType(String type);
+    public abstract RowMapper<?> getMapper();
 
     static {
         DEFAULT_LIMIT = 100;
@@ -237,6 +279,7 @@ public abstract class QueryScreen {
     private static class QueryArgs {
 
         boolean canRun;
+        boolean isNew;
         QueryType type;
         String search;
         boolean ascending;

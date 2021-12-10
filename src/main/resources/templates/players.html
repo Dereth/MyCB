@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:>
 <head>
     <meta charset="UTF-8">
     <title>MyCB: Players</title>
 </head>
 <body>
+<a href="/">Home</a>
 <form action="#" th:action="@{/players}" th:object="${playersScreen}" method="post">
     <table>
         <tr>
+            <td>Search by:</td>
             <td>
                 <select th:field="*{type}">
                     <option th:value="name" th:text="Name"></option>
+                    <option th:value="team" th:text="Team"></option>
+                    <option th:value="weight" th:text="Weight"></option>
+                    <option th:value="height" th:text="Height"></option>
+                    <option th:value="game" th:text="GameID"></option>
                 </select>
             </td>
-            <td>Name:</td>
+            <td>Search for:</td>
             <td><input type="text" th:field="*{search}" /></td>
+            <td>Order by:</td>
             <td>
                 <select th:field="*{order}">
                     <option th:value="desc" th:text="Descending"></option>
                     <option th:value="asc" th:text="Ascending"></option>
                 </select>
             </td>
+            <td>Show:</td>
             <td>
                 <select th:field="*{limit}">
                     <option th:value="10" th:text="10"></option>
@@ -31,11 +39,48 @@
                     <option th:value="5000" th:text="5000"></option>
                 </select>
             </td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
+            <td><button type="submit">GO!</button></td>
         </tr>
     </table>
 </form>
+<hr>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Number</td>
+        <td>Team</td>
+        <td>Position</td>
+        <td>Weight</td>
+        <td>Height</td>
+        <td>PPG</td>
+        <td>RPG</td>
+        <td>PCT</td>
+    </tr>
+    <tr th:each="r : ${results}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.name}"></td>
+        <td th:text="${r.number"></td>
+        <td th:text="${r.team}"></td>
+        <td th:text="${r.position}"></td>
+        <td th:text="${r.weight}"></td>
+        <td th:text="${r.height}"></td>
+        <td th:text="${r.ppg}"></td>
+        <td th:text="${r.rpg}"></td>
+        <td th:text="${r.pct}"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <a th:href="${prev?.link}", th:text="${prev?.text}"></a>
+        </td>
+        <td>
+            <a th:href="${next?.link}", th:text="${next?.text}"></a>
+        </td>
+    </tr>
+</table>
+<a th:text="${feedback?.text}"></a>
+<hr>
 </body>
 </html>
