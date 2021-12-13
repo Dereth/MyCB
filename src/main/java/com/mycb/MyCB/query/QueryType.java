@@ -6,7 +6,11 @@ public enum QueryType {
     PLAYERS_WEIGHT(Queries.playersWeight, false),
     PLAYERS_HEIGHT(Queries.playersHeight, false),
     PLAYERS_TEAM(Queries.playersTeam, true),
-    PLAYERS_GAME(Queries.playersGame, true);
+    PLAYERS_GAME(Queries.playersGame, true),
+    TEAMS_NAME(Queries.teamsName, true),
+    TEAMS_WINS(Queries.teamsWins, true),
+    TEAMS_LOSSES(Queries.teamsLosses, true),
+    TEAMS_CONFERENCE(Queries.teamsConference, true),;
 
     private final String query;
     private final boolean hasArg;

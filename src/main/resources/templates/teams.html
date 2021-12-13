@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:>
 <head>
     <meta charset="UTF-8">
     <title>MyCB: Teams</title>
 </head>
 <body>
-    <a>WIP</a>
+<a href="/">Home</a>
+<form action="#" th:action="@{/teams}" th:object="${teamsScreen}" method="post">
+    <table>
+        <tr>
+            <td>Search by:</td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:value="name" th:text="Name"></option>
+                    <option th:value="wins" th:text="Wins"></option>
+                    <option th:value="losses" th:text="Losses"></option>
+                    <option th:value="conference" th:text="Conference"></option>
+                </select>
+            </td>
+            <td>Search for:</td>
+            <td><input type="text" th:field="*{search}" /></td>
+            <td>Order by:</td>
+            <td>
+                <select th:field="*{order}">
+                    <option th:value="desc" th:text="Descending"></option>
+                    <option th:value="asc" th:text="Ascending"></option>
+                </select>
+            </td>
+            <td>Show:</td>
+            <td>
+                <select th:field="*{limit}">
+                    <option th:value="10" th:text="10"></option>
+                    <option th:value="50" th:text="50"></option>
+                    <option th:value="100" th:text="100"></option>
+                    <option th:value="500" th:text="500"></option>
+                    <option th:value="1000" th:text="1000"></option>
+                    <option th:value="5000" th:text="5000"></option>
+                </select>
+            </td>
+            <td><button type="submit">GO!</button></td>
+        </tr>
+    </table>
+</form>
+<hr>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Wins</td>
+        <td>Losses</td>
+        <td>Conference</td>
+    </tr>
+    <tr th:each="r : ${results}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.name}"></td>
+        <td th:text="${r.wins"></td>
+        <td th:text="${r.losses}"></td>
+        <td th:text="${r.conference}"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <a th:href="${prev?.link}", th:text="${prev?.text}"></a>
+        </td>
+        <td>
+            <a th:href="${next?.link}", th:text="${next?.text}"></a>
+        </td>
+    </tr>
+</table>
+<a th:text="${feedback?.text}"></a>
+<hr>
 </body>
 </html>

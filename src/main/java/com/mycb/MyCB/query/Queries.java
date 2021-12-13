@@ -8,6 +8,11 @@ public class Queries {
     public static final String playersTeam;
     public static final String playersGame;
 
+    public static final String teamsName;
+    public static final String teamsWins;
+    public static final String teamsLosses;
+    public static final String teamsConference;
+
     static {
         playersName = "" +
                 "SELECT p.name AS name, " +
@@ -90,5 +95,38 @@ public class Queries {
                 "OR t.team_id = g.away_team_id " +
                 "WHERE g.game_id = ? " +
                 "ORDER BY p.ppg;";
+
+        teamsName = "" +
+                "SELECT t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t " +
+                "WHERE t.name = ? " +
+                "ORDER BY t.name;";
+        teamsWins = "" +
+                "SELECT t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t " +
+                "WHERE t.wins = ? " +
+                "ORDER BY t.wins;";
+        teamsLosses = "" +
+                "SELECT t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t " +
+                "WHERE t.losses = ? " +
+                "ORDER BY t.losses;";
+        teamsConference = "" +
+                "SELECT t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t " +
+                "WHERE t.conference = ? " +
+                "ORDER BY t.conference;";
     }
 }
