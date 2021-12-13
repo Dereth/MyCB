@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>MyCB: Modify Players</title>
+</head>
+<body>
+<a href="/modify">Back</a>
+<form action="#" th:action="@{/modify/player}" th:object="${modifyPlayerForm}" method="post">
+    <table>
+        <tr>
+            <td>Edit Mode:</td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:value="insert" th:text="Insert"></option>
+                    <option th:value="update" th:text="Update"></option>
+                    <option th:value="delete" th:text="Delete"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Player Id:</td>
+            <td><input type="text" th:field="*{playerId}" /></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td>Number:</td>
+            <td><input type="text" th:field="*{number}" /></td>
+        </tr>
+        <tr>
+            <td>Position:</td>
+            <td><input type="text" th:field="*{position}" /></td>
+        </tr>
+        <tr>
+            <td>Weight:</td>
+            <td><input type="text" th:field="*{weight}" /></td>
+        </tr>
+        <tr>
+            <td>Height:</td>
+            <td><input type="text" th:field="*{height}" /></td>
+        </tr>
+        <tr>
+            <td>PPG:</td>
+            <td><input type="text" th:field="*{ppg}" /></td>
+        </tr>
+        <tr>
+            <td>RPG:</td>
+            <td><input type="text" th:field="*{rpg}" /></td>
+        </tr>
+        <tr>
+            <td>PCT:</td>
+            <td><input type="text" th:field="*{pct}" /></td>
+        </tr>
+        <tr>
+            <td><button type="submit">GO!</button></td>
+        </tr>
+    </table>
+</form>
+<hr>
+</body>
+</html>

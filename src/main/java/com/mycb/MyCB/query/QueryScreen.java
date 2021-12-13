@@ -1,6 +1,5 @@
 package com.mycb.MyCB.query;
 
-import com.mycb.MyCB.query.QueryType;
 import com.mycb.MyCB.webpage.Link;
 import com.mycb.MyCB.webpage.Text;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -185,7 +184,7 @@ public abstract class QueryScreen {
             int step = args.ascending ? 1 : -1;
             List<Object> processed = new ArrayList<>(size);
             for (int i = 0; i < size; i++) {
-                processed.set(i, results.get(s));
+                processed.add(results.get(s));
                 s += step;
             }
 
