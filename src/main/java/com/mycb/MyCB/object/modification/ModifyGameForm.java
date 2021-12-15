@@ -9,17 +9,18 @@ public class ModifyGameForm extends ModifyForm {
     private String awayScore;
     private String date;
     private String winnerId;
+    private String loserId;
 
     @Override
     public Object[] runInsert() {
-        this.query = "INSERT INTO Games VALUES(?, ?, ?, ?, ?, ?, ?);";
-        return new Object[] {gameId, homeTeamId, awayTeamId, homeScore, awayScore, date, winnerId};
+        this.query = "INSERT INTO Games VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        return new Object[] {gameId, homeTeamId, awayTeamId, homeScore, awayScore, date, winnerId, loserId};
     }
 
     @Override
     public Object[] runUpdate() {
-        this.query = "UPDATE Games SET home_team_id = ?, away_team_id = ?, home_score = ?, away_score = ?, date = ?, winner_id = ?, WHERE game_id = ?";
-        return new Object[] {homeTeamId, awayTeamId, homeScore, awayScore, date, winnerId, gameId};
+        this.query = "UPDATE Games SET home_team_id = ?, away_team_id = ?, home_score = ?, away_score = ?, date = ?, winner_id = ?, loser_id = ? WHERE game_id = ?";
+        return new Object[] {homeTeamId, awayTeamId, homeScore, awayScore, date, winnerId, loserId, gameId};
     }
 
     @Override
@@ -82,5 +83,13 @@ public class ModifyGameForm extends ModifyForm {
 
     public void setWinnerId(String winnerId) {
         this.winnerId = winnerId;
+    }
+
+    public String getLoserId() {
+        return loserId;
+    }
+
+    public void setLoserId(String loserId) {
+        this.loserId = loserId;
     }
 }
