@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>MyCB: Modify Teams</title>
+</head>
+<body>
+<a href="/modify">Back</a>
+<form action="#" th:action="@{/modify/team}" th:object="${modifyTeamForm}" method="post">
+    <table>
+        <tr>
+            <td>Edit Mode:</td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:value="insert" th:text="Insert"></option>
+                    <option th:value="update" th:text="Update"></option>
+                    <option th:value="delete" th:text="Delete"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Team Id:</td>
+            <td><input type="text" th:field="*{teamId}" /></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td>Wins:</td>
+            <td><input type="text" th:field="*{wins}" /></td>
+        </tr>
+        <tr>
+            <td>Losses:</td>
+            <td><input type="text" th:field="*{losses}" /></td>
+        </tr>
+        <tr>
+            <td>Conference:</td>
+            <td><input type="text" th:field="*{conference}" /></td>
+        </tr>
+        <tr>
+            <td><button type="submit">GO!</button></td>
+        </tr>
+    </table>
+</form>
+<hr>
+</body>
+</html>

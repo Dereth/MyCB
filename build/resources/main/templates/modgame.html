@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>MyCB: Modify Games</title>
+</head>
+<body>
+<a href="/modify">Back</a>
+<form action="#" th:action="@{/modify/game}" th:object="${modifyGameForm}" method="post">
+    <table>
+        <tr>
+            <td>Edit Mode:</td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:value="insert" th:text="Insert"></option>
+                    <option th:value="update" th:text="Update"></option>
+                    <option th:value="delete" th:text="Delete"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Game Id:</td>
+            <td><input type="text" th:field="*{gameId}" /></td>
+        </tr>
+        <tr>
+            <td>Home Team ID:</td>
+            <td><input type="text" th:field="*{homeTeamId}" /></td>
+        </tr>
+        <tr>
+            <td>Away Team ID:</td>
+            <td><input type="text" th:field="*{awayTeamId}" /></td>
+        </tr>
+        <tr>
+            <td>Home Score:</td>
+            <td><input type="text" th:field="*{homeScore}" /></td>
+        </tr>
+        <tr>
+            <td>Away Score:</td>
+            <td><input type="text" th:field="*{awayScore}" /></td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            <td><input type="text" th:field="*{date}" /></td>
+        </tr>
+        <tr>
+            <td>Winner ID:</td>
+            <td><input type="text" th:field="*{winnerId}" /></td>
+        </tr>
+        <tr>
+            <td>Loser ID:</td>
+            <td><input type="text" th:field="*{LoserId}" /></td>
+        </tr>
+        <tr>
+            <td><button type="submit">GO!</button></td>
+        </tr>
+    </table>
+</form>
+<hr>
+</body>
+</html>
