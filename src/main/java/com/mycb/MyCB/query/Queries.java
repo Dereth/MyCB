@@ -102,7 +102,8 @@ public class Queries {
                 "ORDER BY p.ppg;";
 
         teamsName = "" +
-                "SELECT t.name AS name, " +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
                 "t.wins AS wins, " +
                 "t.losses AS losses, " +
                 "t.conference AS conference " +
@@ -110,7 +111,8 @@ public class Queries {
                 "WHERE t.name = ? " +
                 "ORDER BY t.name;";
         teamsWins = "" +
-                "SELECT t.name AS name, " +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
                 "t.wins AS wins, " +
                 "t.losses AS losses, " +
                 "t.conference AS conference " +
@@ -118,7 +120,8 @@ public class Queries {
                 "WHERE t.wins = ? " +
                 "ORDER BY t.wins;";
         teamsLosses = "" +
-                "SELECT t.name AS name, " +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
                 "t.wins AS wins, " +
                 "t.losses AS losses, " +
                 "t.conference AS conference " +
@@ -126,7 +129,8 @@ public class Queries {
                 "WHERE t.losses = ? " +
                 "ORDER BY t.losses;";
         teamsConference = "" +
-                "SELECT t.name AS name, " +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
                 "t.wins AS wins, " +
                 "t.losses AS losses, " +
                 "t.conference AS conference " +
