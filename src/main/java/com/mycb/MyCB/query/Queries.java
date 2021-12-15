@@ -143,11 +143,14 @@ public class Queries {
                 "ORDER BY t.conference;";
 
         gamesHomeTeam = "" +
-                "SELECT ht.name AS home_team, " +
+                "SELECT g.game_id AS game_id, " +
+                "g.date AS date, " +
+                "ht.name AS home_team, " +
                 "at.name AS away_team, " +
                 "g.home_score AS home_score, " +
                 "g.away_score AS away_score, " +
-                "w.name AS winner " +
+                "w.name AS winner, " +
+                "l.name AS loser " +
                 "FROM Games g " +
                 "LEFT OUTER JOIN Teams ht " +
                 "ON g.home_team_id = ht.team_id " +
@@ -159,11 +162,14 @@ public class Queries {
                 "ON g.loser_id = l.team_id " +
                 "WHERE ht.name = ?;";
         gamesAwayTeam = "" +
-                "SELECT ht.name AS home_team, " +
+                "SELECT g.game_id AS game_id, " +
+                "g.date AS date, " +
+                "ht.name AS home_team, " +
                 "at.name AS away_team, " +
                 "g.home_score AS home_score, " +
                 "g.away_score AS away_score, " +
-                "w.name AS winner " +
+                "w.name AS winner, " +
+                "l.name AS loser " +
                 "FROM Games g " +
                 "LEFT OUTER JOIN Teams ht " +
                 "ON g.home_team_id = ht.team_id " +
@@ -175,11 +181,14 @@ public class Queries {
                 "ON g.loser_id = l.team_id " +
                 "WHERE at.name = ?;";
         gamesDate = "" +
-                "SELECT ht.name AS home_team, " +
+                "SELECT g.game_id AS game_id, " +
+                "g.date AS date, " +
+                "ht.name AS home_team, " +
                 "at.name AS away_team, " +
                 "g.home_score AS home_score, " +
                 "g.away_score AS away_score, " +
-                "w.name AS winner " +
+                "w.name AS winner, " +
+                "l.name AS loser " +
                 "FROM Games g " +
                 "LEFT OUTER JOIN Teams ht " +
                 "ON g.home_team_id = ht.team_id " +
