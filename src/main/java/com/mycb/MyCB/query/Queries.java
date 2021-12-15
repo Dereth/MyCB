@@ -15,7 +15,8 @@ public class Queries {
 
     static {
         playersName = "" +
-                "SELECT p.name AS name, " +
+                "SELECT p.player_id AS player_id, " +
+                "p.name AS name, " +
                 "p.number AS number, " +
                 "t.name AS team, " +
                 "p.position AS position, " +
@@ -24,14 +25,15 @@ public class Queries {
                 "p.ppg AS ppg, " +
                 "p.rpg AS rpg, " +
                 "p.pct AS pct " +
-                "FROM Players p JOIN PlayerRel r " +
+                "FROM Players p LEFT OUTER JOIN PlayerRel r " +
                 "ON p.player_id = r.player_id " +
-                "JOIN Teams t " +
+                "LEFT OUTER JOIN Teams t " +
                 "ON r.team_id = t.team_id " +
                 "WHERE p.name = ? " +
                 "ORDER BY p.ppg;";
         playersWeight = "" +
-                "SELECT p.name AS name, " +
+                "SELECT p.player_id AS player_id, " +
+                "p.name AS name, " +
                 "p.number AS number, " +
                 "t.name AS team, " +
                 "p.position AS position, " +
@@ -40,13 +42,14 @@ public class Queries {
                 "p.ppg AS ppg, " +
                 "p.rpg AS rpg, " +
                 "p.pct AS pct " +
-                "FROM Players p JOIN PlayerRel r " +
+                "FROM Players p LEFT OUTER JOIN PlayerRel r " +
                 "ON p.player_id = r.player_id " +
-                "JOIN Teams t " +
+                "LEFT OUTER JOIN Teams t " +
                 "ON r.team_id = t.team_id " +
                 "ORDER BY p.weight;";
         playersHeight = "" +
-                "SELECT p.name AS name, " +
+                "SELECT p.player_id AS player_id, " +
+                "p.name AS name, " +
                 "p.number AS number, " +
                 "t.name AS team, " +
                 "p.position AS position, " +
@@ -55,13 +58,14 @@ public class Queries {
                 "p.ppg AS ppg, " +
                 "p.rpg AS rpg, " +
                 "p.pct AS pct " +
-                "FROM Players p JOIN PlayerRel r " +
+                "FROM Players p LEFT OUTER JOIN PlayerRel r " +
                 "ON p.player_id = r.player_id " +
-                "JOIN Teams t " +
+                "LEFT OUTER JOIN Teams t " +
                 "ON r.team_id = t.team_id " +
                 "ORDER BY p.height;";
         playersTeam = "" +
-                "SELECT p.name AS name, " +
+                "SELECT p.player_id AS player_id, " +
+                "p.name AS name, " +
                 "p.number AS number, " +
                 "t.name AS team, " +
                 "p.position AS position, " +
@@ -70,14 +74,15 @@ public class Queries {
                 "p.ppg AS ppg, " +
                 "p.rpg AS rpg, " +
                 "p.pct AS pct " +
-                "FROM Players p JOIN PlayerRel r " +
+                "FROM Players p LEFT OUTER JOIN PlayerRel r " +
                 "ON p.player_id = r.player_id " +
-                "JOIN Teams t " +
+                "LEFT OUTER JOIN Teams t " +
                 "ON r.team_id = t.team_id " +
                 "WHERE t.name = ? " +
                 "ORDER BY p.ppg;";
         playersGame = "" +
-                "SELECT p.name AS name, " +
+                "SELECT p.player_id AS player_id, " +
+                "p.name AS name, " +
                 "p.number AS number, " +
                 "t.name AS team, " +
                 "p.position AS position, " +
@@ -86,9 +91,9 @@ public class Queries {
                 "p.ppg AS ppg, " +
                 "p.rpg AS rpg, " +
                 "p.pct AS pct " +
-                "FROM Players p JOIN PlayerRel r " +
+                "FROM Players p LEFT OUTER JOIN PlayerRel r " +
                 "ON p.player_id = r.player_id " +
-                "JOIN Teams t " +
+                "LEFT OUTER JOIN Teams t " +
                 "ON r.team_id = t.team_id " +
                 "JOIN Games g " +
                 "ON t.team_id = g.home_team_id " +

@@ -1,6 +1,6 @@
 package com.mycb.MyCB.webpage.players;
 
-import com.mycb.MyCB.demo.PlayerMapper;
+import com.mycb.MyCB.object.player.PlayerMapper;
 import com.mycb.MyCB.query.QueryType;
 import com.mycb.MyCB.query.QueryScreen;
 import org.springframework.jdbc.core.RowMapper;
