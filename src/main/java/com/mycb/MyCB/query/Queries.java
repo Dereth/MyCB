@@ -13,6 +13,10 @@ public class Queries {
     public static final String teamsLosses;
     public static final String teamsConference;
 
+    public static final String gamesHomeTeam;
+    public static final String gamesAwayTeam;
+    public static final String gamesDate;
+
     static {
         playersName = "" +
                 "SELECT p.player_id AS player_id, " +
@@ -137,5 +141,54 @@ public class Queries {
                 "FROM Teams t " +
                 "WHERE t.conference = ? " +
                 "ORDER BY t.conference;";
+
+        gamesHomeTeam = "" +
+                "SELECT ht.name AS home_team, " +
+                "at.name AS away_team, " +
+                "g.home_score AS home_score, " +
+                "g.away_score AS away_score, " +
+                "w.name AS winner " +
+                "FROM Games g " +
+                "LEFT OUTER JOIN Teams ht " +
+                "ON g.home_team_id = ht.team_id " +
+                "LEFT OUTER JOIN Teams at " +
+                "ON g.away_team_id = at.team_id " +
+                "LEFT OUTER JOIN Teams w " +
+                "ON g.winner_id = w.team_id " +
+                "LEFT OUTER JOIN Teams l " +
+                "ON g.loser_id = l.team_id " +
+                "WHERE ht.name = ?;";
+        gamesAwayTeam = "" +
+                "SELECT ht.name AS home_team, " +
+                "at.name AS away_team, " +
+                "g.home_score AS home_score, " +
+                "g.away_score AS away_score, " +
+                "w.name AS winner " +
+                "FROM Games g " +
+                "LEFT OUTER JOIN Teams ht " +
+                "ON g.home_team_id = ht.team_id " +
+                "LEFT OUTER JOIN Teams at " +
+                "ON g.away_team_id = at.team_id " +
+                "LEFT OUTER JOIN Teams w " +
+                "ON g.winner_id = w.team_id " +
+                "LEFT OUTER JOIN Teams l " +
+                "ON g.loser_id = l.team_id " +
+                "WHERE at.name = ?;";
+        gamesDate = "" +
+                "SELECT ht.name AS home_team, " +
+                "at.name AS away_team, " +
+                "g.home_score AS home_score, " +
+                "g.away_score AS away_score, " +
+                "w.name AS winner " +
+                "FROM Games g " +
+                "LEFT OUTER JOIN Teams ht " +
+                "ON g.home_team_id = ht.team_id " +
+                "LEFT OUTER JOIN Teams at " +
+                "ON g.away_team_id = at.team_id " +
+                "LEFT OUTER JOIN Teams w " +
+                "ON g.winner_id = w.team_id " +
+                "LEFT OUTER JOIN Teams l " +
+                "ON g.loser_id = l.team_id " +
+                "WHERE g.date = ?;";
     }
 }

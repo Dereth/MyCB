@@ -198,7 +198,7 @@ public abstract class QueryScreen {
                 model.addAttribute("prev", null);
             }
 
-            if (args.page * args.limit > results.size() && size == args.limit) {
+            if ((1 + args.page) * args.limit < results.size() && size == args.limit) {
                 page = String.valueOf(args.page+1);
                 model.addAttribute("next", new Link(getRedirect(), "Next"));
             }
