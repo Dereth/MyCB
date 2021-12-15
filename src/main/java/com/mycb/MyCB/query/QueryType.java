@@ -13,7 +13,8 @@ public enum QueryType {
     TEAMS_CONFERENCE(Queries.teamsConference, true),
     GAMES_HOME_TEAM(Queries.gamesHomeTeam, true),
     GAMES_AWAY_TEAM(Queries.gamesAwayTeam, true),
-    GAMES_DATE(Queries.gamesDate, true);
+    GAMES_DATE(Queries.gamesDate, true),
+    GAMES_PLAYER(Queries.gamesPlayer, true);
 
     private final String query;
     private final boolean hasArg;

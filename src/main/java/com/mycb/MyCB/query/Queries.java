@@ -16,6 +16,7 @@ public class Queries {
     public static final String gamesHomeTeam;
     public static final String gamesAwayTeam;
     public static final String gamesDate;
+    public static final String gamesPlayer;
 
     static {
         playersName = "" +
@@ -199,5 +200,27 @@ public class Queries {
                 "LEFT OUTER JOIN Teams l " +
                 "ON g.loser_id = l.team_id " +
                 "WHERE g.date = ?;";
+        gamesPlayer = "" +
+                "SELECT g.game_id AS game_id, " +
+                "g.date AS date, " +
+                "ht.name AS home_team, " +
+                "at.name AS away_team, " +
+                "g.home_score AS home_score, " +
+                "g.away_score AS away_score, " +
+                "w.name AS winner, " +
+                "l.name AS loser " +
+                "FROM Games g " +
+                "LEFT OUTER JOIN Teams ht " +
+                "ON g.home_team_id = ht.team_id " +
+                "LEFT OUTER JOIN Teams at " +
+                "ON g.away_team_id = at.team_id " +
+                "LEFT OUTER JOIN Teams w " +
+                "ON g.winner_id = w.team_id " +
+                "LEFT OUTER JOIN Teams l " +
+                "ON g.loser_id = l.team_id " +
+                "LEFT OUTER JOIN PlayerRel " +
+                "ON g.home_team_id = PlayerRel.team_id " +
+                "OR g.away_team_id = PlayerRel.team_id " +
+                "WHERE PlayerRel.player_id = ?;";
     }
 }

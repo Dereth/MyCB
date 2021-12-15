@@ -17,6 +17,9 @@ public class GamesScreen extends QueryScreen{
             case "date": {
                 return QueryType.GAMES_DATE;
             }
+            case "player": {
+                return QueryType.GAMES_PLAYER;
+            }
         }
         return null;
     }
