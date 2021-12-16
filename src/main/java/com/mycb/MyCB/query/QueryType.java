@@ -11,6 +11,7 @@ public enum QueryType {
     TEAMS_WINS(Queries.teamsWins, true),
     TEAMS_LOSSES(Queries.teamsLosses, true),
     TEAMS_CONFERENCE(Queries.teamsConference, true),
+    TEAMS_COACH(Queries.teamsCoach, true),
     GAMES_HOME_TEAM(Queries.gamesHomeTeam, true),
     GAMES_AWAY_TEAM(Queries.gamesAwayTeam, true),
     GAMES_DATE(Queries.gamesDate, true),

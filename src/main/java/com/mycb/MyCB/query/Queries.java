@@ -12,6 +12,7 @@ public class Queries {
     public static final String teamsWins;
     public static final String teamsLosses;
     public static final String teamsConference;
+    public static final String teamsCoach;
 
     public static final String gamesHomeTeam;
     public static final String gamesAwayTeam;
@@ -141,6 +142,16 @@ public class Queries {
                 "t.conference AS conference " +
                 "FROM Teams t " +
                 "WHERE t.conference = ? " +
+                "ORDER BY t.conference;";
+        teamsCoach = "" +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t LEFT OUTER JOIN CoachRel " +
+                "ON t.team_id = CoachRel.team_id " +
+                "WHERE CoachRel.coach_id = ? " +
                 "ORDER BY t.conference;";
 
         gamesHomeTeam = "" +
