@@ -4,6 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public abstract class ModifyForm {
 
+    private final static Object lock = new Object();
+
     protected String type;
     protected String query;
 
@@ -22,26 +24,27 @@ public abstract class ModifyForm {
     public abstract Object[] runDelete();
 
     public void run(JdbcTemplate jdbcTemplate) {
-        Object[] args;
-        switch (type) {
-            case "insert": {
-                args = runInsert();
-                break;
+        synchronized (lock) {
+            Object[] args;
+            switch (type) {
+                case "insert": {
+                    args = runInsert();
+                    break;
+                }
+                case "update": {
+                    args = runUpdate();
+                    break;
+                }
+                case "delete": {
+                    args = runDelete();
+                    break;
+                }
+                default: {
+                    return;
+                }
             }
-            case "update": {
-                args = runUpdate();
-                break;
-            }
-            case "delete": {
-                args = runDelete();
-                break;
-            }
-            default: {
-                return;
-            }
+
+            jdbcTemplate.update(query, args);
         }
-
-        jdbcTemplate.update(query, args);
-
     }
 }

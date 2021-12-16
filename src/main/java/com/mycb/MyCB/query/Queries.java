@@ -12,11 +12,15 @@ public class Queries {
     public static final String teamsWins;
     public static final String teamsLosses;
     public static final String teamsConference;
+    public static final String teamsCoach;
 
     public static final String gamesHomeTeam;
     public static final String gamesAwayTeam;
     public static final String gamesDate;
     public static final String gamesPlayer;
+
+    public static final String coachesName;
+    public static final String coachesTeam;
 
     static {
         playersName = "" +
@@ -142,6 +146,16 @@ public class Queries {
                 "FROM Teams t " +
                 "WHERE t.conference = ? " +
                 "ORDER BY t.conference;";
+        teamsCoach = "" +
+                "SELECT t.team_id AS team_id, " +
+                "t.name AS name, " +
+                "t.wins AS wins, " +
+                "t.losses AS losses, " +
+                "t.conference AS conference " +
+                "FROM Teams t LEFT OUTER JOIN CoachRel " +
+                "ON t.team_id = CoachRel.team_id " +
+                "WHERE CoachRel.coach_id = ? " +
+                "ORDER BY t.conference;";
 
         gamesHomeTeam = "" +
                 "SELECT g.game_id AS game_id, " +
@@ -222,5 +236,28 @@ public class Queries {
                 "ON g.home_team_id = PlayerRel.team_id " +
                 "OR g.away_team_id = PlayerRel.team_id " +
                 "WHERE PlayerRel.player_id = ?;";
+
+        coachesName = "" +
+                "SELECT c.coach_id AS coach_id, " +
+                "c.name AS name, " +
+                "t.name AS team_name " +
+                "FROM Coaches c " +
+                "LEFT OUTER JOIN CoachRel " +
+                "ON c.coach_id = CoachRel.coach_id " +
+                "LEFT OUTER JOIN Teams t " +
+                "ON CoachRel.team_id = t.team_id " +
+                "WHERE c.name = ? " +
+                "ORDER BY t.wins;";
+        coachesTeam = "" +
+                "SELECT c.coach_id AS coach_id, " +
+                "c.name AS name, " +
+                "t.name AS team_name " +
+                "FROM Coaches c " +
+                "LEFT OUTER JOIN CoachRel " +
+                "ON c.coach_id = CoachRel.coach_id " +
+                "LEFT OUTER JOIN Teams t " +
+                "ON CoachRel.team_id = t.team_id " +
+                "WHERE t.name = ? " +
+                "ORDER BY t.wins;";
     }
 }

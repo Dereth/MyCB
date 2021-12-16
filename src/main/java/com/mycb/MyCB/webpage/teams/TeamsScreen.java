@@ -21,6 +21,9 @@ public class TeamsScreen extends QueryScreen {
             case "conference": {
                 return QueryType.TEAMS_CONFERENCE;
             }
+            case "coach": {
+                return QueryType.TEAMS_COACH;
+            }
         }
         return null;
     }
